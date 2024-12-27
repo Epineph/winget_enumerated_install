@@ -3,27 +3,41 @@
 A script to perform application searches using Winget, enumerate results, and install applications by selection.
 
 .DESCRIPTION
-This script allows the user to search for applications using Winget, displays the results with an enumeration, and
-installs the selected application based on the user's choice. The script is interactive and helps streamline the process
-of finding and installing applications from the Winget repository.
+This script facilitates searching for applications using Windows Package Manager (winget), displaying the search results in an enumerated list, and allowing users to install selected applications by specifying their numbers. Users can also select multiple applications for batch installation.
 
 .PARAMETER SearchTerm
-The term to search for in the Winget repository. The script uses this term to find matching applications.
+Specifies the term to search for in the Winget repository. If not provided as an argument, the script prompts the user for input during execution.
 
 .EXAMPLE
 PS> .\WingetSearchInstaller.ps1 -SearchTerm "notepad"
 
-Searches for applications related to "notepad," lists the results, and allows the user to install one of the matches.
+Searches for applications related to "notepad," lists the results, and allows the user to install one or more selected applications.
 
 .EXAMPLE
 PS> .\WingetSearchInstaller.ps1
 
 Prompts the user to input a search term, displays matching results, and allows selection for installation.
 
+.EXAMPLE
+PS> .\WingetSearchInstaller.ps1 -SearchTerm "python"
+
+Searches for "python," enumerates matching applications, and enables the user to install them by selecting their numbers.
+
 .NOTES
 Author: Epineph
 Date: 2024-12-27
-Requires: Windows Package Manager (winget)
+Requirements:
+  - Windows Package Manager (winget) must be installed and configured on the system.
+  - Sufficient permissions to install applications.
+
+.LIMITATIONS
+  - Relies on the output format of `winget search`. Changes to this format may break the script.
+  - Requires an active internet connection for Winget operations.
+
+.TIPS
+  - Use commas to specify multiple application numbers for batch installation, e.g., "1,2,3".
+  - Ensure you run the script with appropriate privileges (e.g., as an administrator) to avoid installation failures.
+
 #>
 
 param (
